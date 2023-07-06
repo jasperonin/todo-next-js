@@ -7,24 +7,24 @@ export default function Home() {
   const [input, setInput] = useState('')
   const [list, setList] = useState([])
 
-  const handleInputEvent = (event) => {
+  const handleInputEvent = (event: { preventDefault: () => void; target: { value: SetStateAction<string> } }) => {
     event.preventDefault()
     setInput(event.target.value) 
   }
 
-  const handleSubmitEvent = (event) => {
+  const handleSubmitEvent = (event: { preventDefault: () => void }) => {
     event.preventDefault()
     setList([input,...list ])
     setInput('')
   }
   
-  const handleDeleteEvent = (listId) => {
+  const handleDeleteEvent = (listId: never) => {
     const deletedItem =  list.filter(lists => list.indexOf(lists) != list.indexOf(listId))
     setList(deletedItem)
   }
 
 
-  const handleUpdateEvent = (index, item) => {
+  const handleUpdateEvent = (index: number, item: string | undefined) => {
     const updatedItem = prompt('Value to update:', item);
     if (updatedItem !== null) {
       const updatedList = [...list];
